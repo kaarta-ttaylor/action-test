@@ -13,7 +13,7 @@ jobs:
       shell: bash
       run: echo $DATE
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$DATE
+      run: docker build . --file Dockerfile --tag my-image-name:${{ env.DATE }}
     - name: Save the Docker Image
       run: docker save -o my-image-name-$DATE.tar my-image-name:$DATE
     - uses: actions/upload-artifact@master
