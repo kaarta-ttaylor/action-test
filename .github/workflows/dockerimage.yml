@@ -5,13 +5,13 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      DATE: $(date +%s)
+#    env:
+#      DATE: $(date +%s)
     steps:
     - uses: actions/checkout@v1
     - name: Display env
       shell: bash
-      run: echo ${{ env.DATE }}
+      run: ::set-env name=DATE::$(date +%s)
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:${{ env.DATE }}
     - name: Display images
