@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Display env
       shell: bash
-      run: ::set-env name=DATE::$(date +%s)
+      run: echo "::set-env name=DATE::$(date +%s)"
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:${{ env.DATE }}
     - name: Display images
