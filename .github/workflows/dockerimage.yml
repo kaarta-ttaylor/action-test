@@ -3,23 +3,23 @@ name: Docker Image CI
 on: [push]
 
 jobs:
+  setup:
+    
 
   build:
     runs-on: ubuntu-latest
+    env:
+      DATE: $(date +%s)
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag my-image-name:$DATE
     - name: Save the Docker Image
-      run: docker save -o my-image-name:$(date +%s).tar my-image-name:$(date +%s)
- 
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/upload-artifact@master
-        with:
-          name: image
-          path: my-image-name:$(date +%s).tar
+      run: docker save -o my-image-name-$DATE.tar my-image-name:$DATE
+    - uses: actions/upload-artifact@master
+      with:
+        name: image
+        path: my-image-name-$DATE.tar
      
     
   
