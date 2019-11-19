@@ -20,7 +20,7 @@ jobs:
       run: docker save -o my-image-name-${{ env.DATE }}.tar my-image-name:${{ env.DATE }}
     - uses: actions/upload-artifact@master
       with:
-        name: image
+        name: my-image-name-${{ env.DATE }}.tar
         path: my-image-name-${{ env.DATE }}.tar
      
     
