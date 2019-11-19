@@ -15,11 +15,11 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:${{ env.DATE }}
     - name: Save the Docker Image
-      run: docker save -o my-image-name-$DATE.tar my-image-name:$DATE
+      run: docker save -o my-image-name-${{ env.DATE }}.tar my-image-name:${{ env.DATE }}
     - uses: actions/upload-artifact@master
       with:
         name: image
-        path: my-image-name-$DATE.tar
+        path: my-image-name-${{ env.DATE }}.tar
      
     
   
